@@ -1,0 +1,18 @@
+gofer 10.10.11.225
+---
+nmap -p- --min-rate 4000 10.10.11.225
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-08-03 08:22 CEST
+Nmap scan report for 10.10.11.225
+Host is up (0.20s latency).
+Not shown: 63571 filtered tcp ports (no-response), 1960 closed tcp ports (conn-refused)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+---
+nmap -p 80,139,445 -sC -sV --min-rate 10.10.11.225
+---
+---
+echo "10.10.11.225 gofer.htb" | sudo tee -a /etc/hosts
+---
