@@ -1,3 +1,6 @@
 [submodule "Gofer/Gofer/Gopherus"]
 	path = Gofer/Gofer/Gopherus
 	url = https://github.com/tarunkant/Gopherus
+[submodule "Gofer/Gopherus"]
+	path = Gofer/Gopherus
+	url = https://github.com/tarunkant/Gopherus
