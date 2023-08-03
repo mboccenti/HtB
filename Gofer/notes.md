@@ -41,10 +41,10 @@ Nmap done: 1 IP address (1 host up) scanned in 16.23 seconds
 echo "10.10.11.225 gofer.htb" | sudo tee -a /etc/hosts
 
 **Corporate website**
-Jeff Davis - Chief Executive Officer 
-Jocelyn Hudson - Product Manager 
-Tom Buckley - CTO 
-Amanda Blake - Accountant 
+- Jeff Davis - Chief Executive Officer 
+- Jocelyn Hudson - Product Manager 
+- Tom Buckley - CTO 
+- Amanda Blake - Accountant 
 
 wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt --hc 400,301 -H 'Host:FUZZ.gofer.htb' http://gofer.htb
  /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
